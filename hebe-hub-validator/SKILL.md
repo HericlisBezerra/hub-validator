@@ -40,6 +40,15 @@ entre o especificado e o construído.
 passo 6 é entregar ao cliente um projeto cuja segurança ninguém verificou; antes do 7, é
 entregar um que ninguém abriu.
 
+**O que o remix faz sozinho** — confirmado na prática, com o **Supabase integrado da Lovable**:
+copia o banco junto, **refaz as secrets** e reconfigura o SMTP. Não carrega conexão para o
+Supabase de origem. Duas bordas continuam sendo responsabilidade de quem entrega:
+
+- **O banco é copiado, então o dado vai junto.** Projeto-molde com dado real, de teste ou de
+  outro cliente entrega esse dado na conta do novo cliente. **Limpe antes.**
+- **Se o projeto usa o Supabase próprio do cliente**, não há banco da Lovable para copiar — o
+  remix carrega a **conexão** para um banco externo. Confira o que atravessa antes de compartilhar.
+
 ---
 
 ## Entrando no meio: quem recebe o PRD pronto

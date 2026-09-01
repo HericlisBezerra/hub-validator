@@ -102,7 +102,9 @@ Sem script, sem dependência. Nada executa; é instrução.
 
 Os prompts **não foram testados contra uma sessão real da Lovable**. A eficácia contra a complacência do gerador é desenho informado, não resultado medido.
 
-E há um teste que ninguém pode fazer por você: **o que o remix carrega** para a conta do cliente — conexão ao seu Supabase, secrets, dados semeados de teste. Faça uma vez, antes do primeiro cliente. Se carregar qualquer um deles, o último passo do fluxo é o vazamento.
+Sobre o remix, o comportamento já é conhecido: com o **Supabase integrado da Lovable**, ele copia o banco junto, refaz as secrets e reconfigura o SMTP — automaticamente, sem carregar conexão para o Supabase de origem.
+
+Sobram duas bordas: **o banco é copiado, então o dado vai junto** (limpe o projeto-molde antes), e **se o projeto usa o Supabase próprio do cliente** não há banco da Lovable para copiar — aí o remix carrega a conexão para um banco externo, e vale conferir o que atravessa.
 
 ## Licença
 

@@ -143,9 +143,17 @@ vazios, erro e carregamento existem — não só o caminho feliz.
 **Faz:** compartilha o projeto com a conta do cliente. **Ative Database e Email Send no ato do
 remix.**
 
-**Verifica antes do primeiro remix da vida** — uma vez, e nunca mais precisa: a cópia carrega
-conexão ao **nosso** Supabase? Carrega secrets? Carrega dados semeados de teste? Se qualquer
-resposta for sim, **pare** — o último passo do fluxo vira vazamento.
+**O que o remix faz sozinho** (confirmado na prática, com o Supabase **integrado da Lovable**):
+copia o banco junto, **refaz as secrets** e reconfigura o SMTP de e-mail. Não carrega conexão
+para o nosso Supabase.
+
+**As duas ressalvas que sobram:**
+
+- 🚨 **O banco é copiado — então o dado vai junto.** Se o projeto-molde tem dado real, de teste
+  ou de outro cliente, ele chega na conta do novo cliente. **Limpe antes de remixar.**
+- 🚨 **Se o projeto usa o Supabase próprio do cliente** (o que a gente recomenda quando ele já
+  tem um), não há banco da Lovable para copiar — o remix carrega a **conexão** para um banco
+  externo. Nesse caso, confira o que atravessa antes de compartilhar.
 
 ---
 
