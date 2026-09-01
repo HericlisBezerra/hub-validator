@@ -104,7 +104,9 @@ Os prompts **não foram testados contra uma sessão real da Lovable**. A eficác
 
 Sobre o remix, o comportamento já é conhecido: com o **Supabase integrado da Lovable**, ele copia o banco junto, refaz as secrets e reconfigura o SMTP — automaticamente, sem carregar conexão para o Supabase de origem.
 
-Sobram duas bordas: **o banco é copiado, então o dado vai junto** (limpe o projeto-molde antes), e **se o projeto usa o Supabase próprio do cliente** não há banco da Lovable para copiar — aí o remix carrega a conexão para um banco externo, e vale conferir o que atravessa.
+Sobra uma borda: **o banco é copiado, então o dado vai junto** — projeto-molde com dado real, de teste ou de outro cliente entrega esse dado na conta nova. Limpe antes.
+
+A stack é **100% da plataforma** — banco, auth, storage, funções, e-mail e deploy saem dela; de fora entra só API de consumo (IA, voz, mensagem).
 
 ## Licença
 

@@ -42,12 +42,10 @@ entregar um que ninguém abriu.
 
 **O que o remix faz sozinho** — confirmado na prática, com o **Supabase integrado da Lovable**:
 copia o banco junto, **refaz as secrets** e reconfigura o SMTP. Não carrega conexão para o
-Supabase de origem. Duas bordas continuam sendo responsabilidade de quem entrega:
+Supabase de origem.
 
-- **O banco é copiado, então o dado vai junto.** Projeto-molde com dado real, de teste ou de
-  outro cliente entrega esse dado na conta do novo cliente. **Limpe antes.**
-- **Se o projeto usa o Supabase próprio do cliente**, não há banco da Lovable para copiar — o
-  remix carrega a **conexão** para um banco externo. Confira o que atravessa antes de compartilhar.
+**A borda que sobra:** o banco é **copiado**, então o **dado viaja**. Projeto-molde com dado
+real, de teste ou de outro cliente entrega esse dado na conta do novo cliente. **Limpe antes.**
 
 ---
 
@@ -124,7 +122,7 @@ não usado é trabalho refeito pior — e que some na próxima atualização del
 
 | Nativo da Lovable | Use para | Não faça |
 |---|---|---|
-| **Supabase integrado** (ou o Supabase próprio do cliente, se ele já tiver) | banco, auth, storage, RLS | subir banco à parte ou API intermediária sem necessidade |
+| **Supabase integrado** | banco, auth, storage, RLS | subir banco à parte ou API intermediária sem necessidade |
 | **Auth do Supabase** | sessão, e-mail, OAuth, recuperação de senha, MFA | autenticação na mão |
 | **Edge Functions** | chamar provedor de IA, guardar segredo, webhook | chave de API no front |
 | **Storage + policy** | upload de arquivo do cliente | bucket público "pra facilitar" |
@@ -132,8 +130,10 @@ não usado é trabalho refeito pior — e que some na próxima atualização del
 | **SEO nativo** — meta, título, Open Graph, sitemap | página encontrável | produto que nasce invisível |
 | **Infraestrutura e deploy da própria Lovable** | publicar e versionar | pipeline paralelo que ninguém mantém |
 
-**Cliente com Supabase próprio:** conecte o existente, nunca crie um segundo. Dois bancos para
-o mesmo produto é dado dividido — e some da auditoria da Frente 2, porque ela olha um só.
+**A stack é 100% da plataforma.** Banco, auth, storage, funções, e-mail e deploy saem dela.
+A única coisa externa é **API de consumo** — provedor de IA, voz, mensagem. Banco de fora não
+entra: além de quebrar o remix, sai do alcance da auditoria da Frente 2, que olha o banco da
+plataforma.
 
 **No fechamento**, confirme item a item: o que a Lovable oferecia foi usado, ou há um motivo
 escrito para não ter sido.

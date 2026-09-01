@@ -102,9 +102,10 @@ feature sem a chave fica **visível e travada**, com o caminho para destravá-la
 
 **Faz:** cola o PRD (com os requisitos de segurança do passo 3) e deixa construir.
 
-**Verifica:** usou o que a plataforma já dá — Supabase integrado (ou o do cliente, se ele já
-tiver), Auth do Supabase, Storage com policy, Edge Functions para qualquer coisa que segure
-chave, envio de e-mail nativo, SEO nativo, revisor antes de publicar.
+**Verifica:** usou o que a plataforma já dá — Supabase integrado, Auth do Supabase, Storage com
+policy, Edge Functions para qualquer coisa que segure chave, envio de e-mail nativo, SEO nativo,
+revisor antes de publicar. **A stack é 100% da plataforma**; de fora entra só API de consumo
+(IA, voz, mensagem).
 
 > **Não reconstrua o que a Lovable já entrega.** Auth na mão, segundo banco, Resend por fora,
 > deploy paralelo — trabalho a mais que envelhece pior.
@@ -151,9 +152,8 @@ para o nosso Supabase.
 
 - 🚨 **O banco é copiado — então o dado vai junto.** Se o projeto-molde tem dado real, de teste
   ou de outro cliente, ele chega na conta do novo cliente. **Limpe antes de remixar.**
-- 🚨 **Se o projeto usa o Supabase próprio do cliente** (o que a gente recomenda quando ele já
-  tem um), não há banco da Lovable para copiar — o remix carrega a **conexão** para um banco
-  externo. Nesse caso, confira o que atravessa antes de compartilhar.
+- A stack é **100% Lovable** — não existe banco de fora no arranjo, então não há conexão externa
+  para o remix carregar.
 
 ---
 
@@ -172,9 +172,10 @@ O que **existe** antes é o passo 3, que é prevenção, não auditoria.
 Não sem evidência. Peça a lista literal de policies, o resultado da query, o print do Advisors.
 Ela é otimista sobre o próprio trabalho — é o modo de falha esperado, não exceção.
 
-**O cliente já tem Supabase. Crio outro?**
-Nunca. Conecte o existente. Dois bancos para o mesmo produto é dado dividido — e some da
-auditoria, que olha um só.
+**Posso usar um Supabase de fora?**
+Não. A stack é **100% da plataforma** — banco, auth, storage, funções, e-mail e deploy saem
+dela. De fora entra só **API de consumo**: provedor de IA, de voz, de mensagem. Banco externo
+quebra o remix e sai do alcance da auditoria.
 
 **Preciso de Resend para enviar e-mail?**
 Não. A Lovable envia e-mail nativamente. Serviço externo é mais uma conta, mais uma chave,
