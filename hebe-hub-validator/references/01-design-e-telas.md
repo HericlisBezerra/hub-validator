@@ -15,9 +15,9 @@ não divergiu. O input vem do PRD (seção **Telas e rotas**); o design system v
 ### Tokens (copie este bloco, nunca reescreva de memória)
 
 ```css
-/* OmniHub — tokens de tema */
+/* OmniHub Solutions — tokens de tema */
 :root, [data-theme="light"] {
-  --acc: #3859FF;        /* cor de marca / links */
+  --acc: #3859FF;        /* acento / links */
   --accHi: #3859FF;      /* CTA primário */
   --accSoft: #EDF1FF;    /* fundo suave de marca */
   --bg: #FFFFFF;
@@ -50,15 +50,45 @@ não divergiu. O input vem do PRD (seção **Telas e rotas**); o design system v
   --warn: #F59E0B; --warn-soft: rgba(245,158,11,.14);
   --err: #E5484D;
 }
+/* Gradiente hero */
+:root { --hero: linear-gradient(120deg, #22307C 0%, #3859FF 65%, #5C77FF 100%); }
 ```
+
+> 🔑 **Regra de marca (DS Solutions v1).** Dentro de uma solução usa-se **apenas o ícone** —
+> a logo completa "omnihub" fica restrita ao shell do Hub (login, sidebar, splash).
+>
+> **O lockup da solução é: ícone + o nome DELA.** Nunca a palavra "OmniHub" ao lado do ícone.
+>
+> ```
+> [◈] Arquiteto de VSL        ← certo
+> [◈] Recriador               ← certo
+> [◈] CRM do Fulano           ← certo
+> [◈] OmniHub                 ← ERRADO dentro de uma solução
+> ```
+>
+> O ícone é a assinatura do Hub; o nome é o da solução. É assim que o usuário sabe **onde
+> está** sem que cada produto se apresente como se fosse o Hub inteiro.
+>
+> Ícone isolado em 48/32/20px via **CSS mask**, para herdar a cor do contexto; em chip,
+> container 32px raio 9px com ícone 18px; sobre gradiente ou fundo escuro, ícone **branco puro**.
+>
+> A única menção **nominal** ao Hub permitida dentro da solução é o badge discreto
+> **"Uma solução OmniHub"** (ícone 16px + texto 11,5px) — rodapé ou canto, nunca no lugar do
+> nome da solução.
+
+> **Motion do DS:** curva `cubic-bezier(.25,1,.5,1)`. O splash da solução usa **só o ícone**
+> (zoom + blur, ~1s) — **sem letras em cascata**.
+
+> **Gradiente de hero:** `linear-gradient(120deg, #22307C 0%, #3859FF 65%, #5C77FF 100%)`.
 
 ### Fundamentos
 
 | Item | Valor |
 |---|---|
 | Fontes | **Inter** (light) / **Outfit** (dark) — Google Fonts, pesos 400–700 |
-| Marca | `#3859FF` (light) / `#5C77FF` (dark) |
-| Raios | cards **16px** · inputs/botões **9px** · pills **99px** |
+| Acento | `#3859FF` (light) / `#5C77FF` (dark) · soft `#EDF1FF` |
+| Motion | curva `cubic-bezier(.25,1,.5,1)` |
+| Raios | chips/inputs **7–8px** · CTAs **9–12px** · cards **14px** · modais **16px** · pills **99px** |
 | Sombra de cartão | `0 1px 2px rgba(3,6,22,.06)` |
 | Sombra flutuante (modal, dropdown, toast) | `0 12px 32px rgba(3,6,22,.14)` |
 | Semânticas | sucesso `#22C55E` · alerta `#F59E0B` · erro `#E5484D` |
